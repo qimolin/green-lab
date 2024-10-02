@@ -8,6 +8,7 @@ function foo(n) {
         const strA = a.toString();
         const strB = b.toString();
 
+        // Compare strings
         return strA.localeCompare(strB);
     });
 }
