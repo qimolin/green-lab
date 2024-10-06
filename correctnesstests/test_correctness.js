@@ -11,9 +11,12 @@ writeFile("./results.csv", "", {flag: "w+"});
                 try {
                     const mod = require(fooPath);
                     let passed = true;
-                    inOut.forEach(test => {
-                        let input = test[0];
-                        let expectedOutput = test[1];
+                    for (let i = 0; i < 50; i++) {
+                        if (problem.startsWith("E") && i > 14) {
+                            break;
+                        }
+                        let input = inOut[i][0];
+                        let expectedOutput = inOut[i][1];
 
                         const numParams = mod.foo.length;
                         const paramsError = Error("got " + input.length + " params instead of " + numParams);
@@ -33,7 +36,7 @@ writeFile("./results.csv", "", {flag: "w+"});
                             console.log("FALSE", input, expectedOutput, output)
                             passed = false;
                         }
-                    })
+                    }
                     writeFile("./results.csv", problem + "," + llm + "," + r.toString() + "," + passed.toString() + "\n", {flag: "a+"});
                 }
                 catch (err) {

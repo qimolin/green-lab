@@ -1,12 +1,21 @@
 E-MX,ChatGPT,0,false,TypeError: text.match is not a function
-E-MX,ChatGPT,1,false
-E-MX,ChatGPT,2,false
+E-MX,ChatGPT,1,true
+E-MX,ChatGPT,2,true
 E-MX,Claude,0,false,Error: got 3 params instead of 2
 E-MX,Claude,1,false,Error: got 3 params instead of 2
 E-MX,Claude,2,false,Error: got 3 params instead of 2
 E-MX,Gemini,0,false,Error: got 3 params instead of 2
 E-MX,Gemini,1,false,Error: got 3 params instead of 2
 E-MX,Gemini,2,false,Error: got 3 params instead of 2
+M-WJ,ChatGPT,0,true
+M-WJ,ChatGPT,1,true
+M-WJ,ChatGPT,2,true
+M-WJ,Claude,0,true
+M-WJ,Claude,1,true
+M-WJ,Claude,2,true
+M-WJ,Gemini,0,true
+M-WJ,Gemini,1,true
+M-WJ,Gemini,2,true
 E-TT,ChatGPT,0,false
 E-TT,ChatGPT,1,false
 E-TT,ChatGPT,2,false
@@ -25,12 +34,3 @@ M-LN,Claude,2,true
 M-LN,Gemini,0,true
 M-LN,Gemini,1,true
 M-LN,Gemini,2,true
-M-WJ,ChatGPT,0,true
-M-WJ,ChatGPT,1,true
-M-WJ,ChatGPT,2,true
-M-WJ,Claude,0,true
-M-WJ,Claude,1,true
-M-WJ,Claude,2,true
-M-WJ,Gemini,0,true
-M-WJ,Gemini,1,true
-M-WJ,Gemini,2,true
