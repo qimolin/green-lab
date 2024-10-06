@@ -49,3 +49,5 @@ function foo(L, N, T, W, X, M, S, Y) {
 // const Y = 3;   // Departure time of reserve bus
 //
 // console.log(foo(L, N, T, W, X, M, S, Y));
+
+module.exports = { foo };

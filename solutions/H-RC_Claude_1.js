@@ -87,3 +87,5 @@ function foo(r, c, S) {
     bfs();
     return result;
 }
+
+module.exports = { foo };

@@ -98,3 +98,4 @@ function foo(r, c, S) {
 
   return maze;
 }
+module.exports = { foo };

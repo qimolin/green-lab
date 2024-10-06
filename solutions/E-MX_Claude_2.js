@@ -45,3 +45,5 @@ testCases.forEach(test => {
     const result = matcher(test);
     console.log(`${test}: ${result.length > 0 ? 'Matched' : 'Not matched'}`);
 });
+
+module.exports = { foo };

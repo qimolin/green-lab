@@ -15,3 +15,5 @@ function foo(x, y, target) {
   const g = gcd(x, y);
   return target % g === 0;
 }
+
+module.exports = { foo };

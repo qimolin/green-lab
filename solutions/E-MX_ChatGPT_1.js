@@ -15,3 +15,5 @@ const wordX = "x";
 const wordY = "y";
 
 console.log(foo(text, wordX, wordY));
+
+module.exports = { foo };

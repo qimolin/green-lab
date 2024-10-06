@@ -18,3 +18,5 @@ function foo(text, x, y) {
 let text = "xx xy xyx xxz xy_xy test example";
 let result = foo(text, "xy", "xx");
 console.log(result);  // Output: [ 'xyx', 'xxz', 'xy_xy', 'test', 'example' ]
+
+module.exports = { foo };

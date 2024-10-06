@@ -15,3 +15,5 @@ let x = "x";
 let y = "y";
 
 console.log(foo(text, x, y)); // Example Output: ['This', 'is', 'a', 'sample', 'text', 'with', 'xy', 'xx']
+
+module.exports = { foo };

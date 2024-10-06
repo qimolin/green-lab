@@ -43,3 +43,5 @@ function foo(L, N, T, W, X, M, S, Y) {
   // Return the arrival time of the reserve bus (bus N) at the hotel (last sorting station)
   return arrivalTimes[N][M - 1];
 }
+
+module.exports = { foo };

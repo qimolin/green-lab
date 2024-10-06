@@ -70,3 +70,4 @@ function foo(r, c, S) {
   }
   return result;
 }
+module.exports = { foo };

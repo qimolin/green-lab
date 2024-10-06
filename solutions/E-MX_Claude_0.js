@@ -44,3 +44,5 @@ const testCases = [
 testCases.forEach(test => {
     console.log(`"${test}": ${matcher(test).join(', ') || 'no match'}`);
 });
+
+module.exports = { foo };

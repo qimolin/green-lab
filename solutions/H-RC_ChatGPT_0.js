@@ -71,3 +71,5 @@ const H = 4;
 const W = 4;
 
 console.log(foo(H, W, maze));
+
+module.exports = { foo };

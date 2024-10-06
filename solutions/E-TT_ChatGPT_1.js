@@ -32,3 +32,5 @@ console.log(foo("XXX------")); // true (X wins)
 console.log(foo("XOXOXOXOX")); // false (no winner)
 console.log(foo("OXOXOXOXO")); // false (no winner)
 console.log(foo("XOX-XO-XO")); // true (O wins)
+
+module.exports = { foo };

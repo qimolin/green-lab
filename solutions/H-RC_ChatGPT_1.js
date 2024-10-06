@@ -54,3 +54,5 @@ function foo(H, W, S) {
   // If we exit the loop without finding the target, return the original grid with no path
   return result;
 }
+
+module.exports = { foo };

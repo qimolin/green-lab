@@ -19,3 +19,4 @@ function foo(x, y) {
   // Return the matches array
   return matches;
 }
+module.exports = { foo };

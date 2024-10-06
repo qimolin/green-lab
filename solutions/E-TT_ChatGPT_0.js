@@ -25,3 +25,5 @@ function foo(board) {
 
   return false;  // Return false if no pattern matches
 }
+
+module.exports = { foo };

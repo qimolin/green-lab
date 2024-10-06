@@ -15,3 +15,4 @@ function foo(x, y, target) {
   // Otherwise, it's possible to reach the target.
   return true;
 }
+module.exports = { foo };

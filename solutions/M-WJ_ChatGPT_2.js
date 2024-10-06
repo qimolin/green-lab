@@ -18,3 +18,5 @@ function foo(x, y, target) {
   // Check if the target is a multiple of the GCD of x and y
   return target % gcd(x, y) === 0;
 }
+
+module.exports = { foo };

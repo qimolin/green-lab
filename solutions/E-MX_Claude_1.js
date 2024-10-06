@@ -33,3 +33,5 @@ function foo(x, y) {
 
 // Example usage
 console.log(foo('cat', 'dog'));
+
+module.exports = { foo };

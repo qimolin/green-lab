@@ -50,3 +50,5 @@ function foo(x, y, target) {
     // If we've exhausted all possibilities and haven't found a solution
     return false;
 }
+
+module.exports = { foo };

@@ -67,3 +67,5 @@ console.log("Test maze:");
 testMaze.forEach(row => console.log(row.join(' ')));
 console.log("\nResult (path marked with 1s):");
 result.forEach(row => console.log(row.join(' ')));
+
+module.exports = { foo };

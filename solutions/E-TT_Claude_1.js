@@ -14,3 +14,5 @@ function foo(board) {
     // This checks horizontal, vertical, and diagonal patterns
     const winningPattern = /(?:XXX|OOO)/.test(formattedBoard) ||  // Horizontal
         /(?:(...)*(.))(?:\2(...)*\2){
+
+module.exports = { foo };

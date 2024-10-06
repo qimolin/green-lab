@@ -38,3 +38,5 @@ function foo(x, y, target) {
   // If we exhaust the queue and don't find a solution, return false
   return false;
 }
+
+module.exports = { foo };

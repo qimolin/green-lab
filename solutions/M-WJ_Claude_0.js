@@ -57,3 +57,5 @@ function foo(x, y, target) {
 console.log(foo(3, 5, 4));  // true
 console.log(foo(2, 6, 5));  // false
 console.log(foo(4, 3, 2));  // true
+
+module.exports = { foo };

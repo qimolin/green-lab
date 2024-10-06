@@ -29,3 +29,5 @@ console.log(foo("XO-XO-XO-")); // true
 console.log(foo("O--XO-XXO")); // false
 console.log(foo("X--O-OX--")); // false
 console.log(foo("XOXXOO---")); // false
+
+module.exports = { foo };

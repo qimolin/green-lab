@@ -8,3 +8,5 @@ function foo(board) {
     // Test the board string for a match using the regex
     return regex.test(board);
 }
+
+module.exports = { foo };

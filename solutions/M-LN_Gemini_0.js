@@ -12,3 +12,4 @@ function foo(n) {
 
   return result.map(Number);
 }
+module.exports = { foo };

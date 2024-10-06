@@ -22,3 +22,4 @@ function foo(board) {
   // No winner
   return false;
 }
+module.exports = { foo };

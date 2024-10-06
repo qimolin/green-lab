@@ -16,3 +16,4 @@ function foo(x, y) {
   // Return the list of matches
   return matches;
 }
+module.exports = { foo };
