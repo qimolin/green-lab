@@ -1,3 +1,21 @@
+E-MX,ChatGPT,0,false,TypeError: text.match is not a function
+E-MX,ChatGPT,1,false
+E-MX,ChatGPT,2,false
+E-MX,Claude,0,false,Error: got 3 params instead of 2
+E-MX,Claude,1,false,Error: got 3 params instead of 2
+E-MX,Claude,2,false,Error: got 3 params instead of 2
+E-MX,Gemini,0,false,Error: got 3 params instead of 2
+E-MX,Gemini,1,false,Error: got 3 params instead of 2
+E-MX,Gemini,2,false,Error: got 3 params instead of 2
+E-TT,ChatGPT,0,false
+E-TT,ChatGPT,1,false
+E-TT,ChatGPT,2,false
+E-TT,Claude,0,false,SyntaxError: Invalid regular expression: missing /
+E-TT,Claude,1,false,SyntaxError: Invalid regular expression: missing /
+E-TT,Claude,2,false
+E-TT,Gemini,0,false
+E-TT,Gemini,1,false
+E-TT,Gemini,2,false
 M-LN,ChatGPT,0,true
 M-LN,ChatGPT,1,true
 M-LN,ChatGPT,2,true
