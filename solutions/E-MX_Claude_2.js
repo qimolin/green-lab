@@ -1,49 +1,26 @@
-function foo(x, y) {
+function foo(check, x, y) {
     // Convert x and y to lowercase for case-insensitive comparison
-    const lowerX = x.toLowerCase();
-    const lowerY = y.toLowerCase();
+    x = x.toLowerCase();
+    y = y.toLowerCase();
 
-    // Create regex pattern
+    // Create the regex pattern
     // (?!\\b(x|y)\\b) - negative lookahead to exclude exact matches of x or y
     // \\w+ - match one or more word characters
-    // 'i' flag for case-insensitive matching
-    const pattern = new RegExp(`(?!\\b(${lowerX}|${lowerY})\\b)\\w+`, 'gi');
+    const pattern = new RegExp(`\\b(?!(${x}|${y})\\b)\\w+\\b`, 'gi');
 
-    // The function to be returned
-    return function(text) {
-        // Convert input text to lowercase for case-insensitive matching
-        const lowerText = text.toLowerCase();
-
-        // Find all matches and return as array
-        return lowerText.match(pattern) || [];
-    };
+    // Find all matches and return as an array
+    return check.match(pattern) || [];
 }
 
 // Test cases
-const matcher = foo('cat', 'dog');
+function runTests() {
+    console.log(foo("xx xy x y test", "x", "y"));  // ["xx", "xy", "test"]
+    console.log(foo("XX XY X Y TEST", "x", "y"));  // ["XX", "XY", "TEST"]
+    console.log(foo("apple banana x y xy apple_x", "x", "y"));  // ["apple", "banana", "xy", "apple_x"]
+    console.log(foo("x_x y_y x y", "x", "y"));  // ["x_x", "y_y"]
+    console.log(foo("testing123 x456 y789 x y", "x", "y"));  // ["testing123", "x456", "y789"]
+}
 
-const testCases = [
-    'cat',           // Should not match
-    'dog',           // Should not match
-    'cats',          // Should match
-    'doggy',         // Should match
-    'catdog',        // Should match
-    'CAT',           // Should not match
-    'DOG',           // Should not match
-    'CATS',          // Should match
-    'CatDog',        // Should match
-    'hello',         // Should match
-    'catalog',       // Should match
-    'hotdog',        // Should match
-    'cat123',        // Should match
-    'dog_house',     // Should match
-    'CAT_DOG'        // Should match
-];
-
-console.log("Test results:");
-testCases.forEach(test => {
-    const result = matcher(test);
-    console.log(`${test}: ${result.length > 0 ? 'Matched' : 'Not matched'}`);
-});
+runTests();
 
 module.exports = { foo };

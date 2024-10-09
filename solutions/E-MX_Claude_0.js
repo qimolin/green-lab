@@ -1,48 +1,63 @@
-function foo(x, y) {
-    // Convert parameters to lowercase for case-insensitive comparison
-    const X = x.toLowerCase();
-    const Y = y.toLowerCase();
-
-    // Function to escape special regex characters
-    const escapeRegex = (string) => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-
-    // Escape the input words for regex safety
-    const escapedX = escapeRegex(X);
-    const escapedY = escapeRegex(Y);
+function foo(check, x, y) {
+    // Convert x and y to lowercase for case-insensitive comparison
+    x = x.toLowerCase();
+    y = y.toLowerCase();
 
     // Create the regex pattern
-    // (?!\b(x|y)\b) - negative lookahead to ensure the word is not exactly x or y
-    // \w+ - match one or more word characters
-    const pattern = new RegExp(`\\b(?!\\b(${escapedX}|${escapedY})\\b)\\w+\\b`, 'gi');
+    // (?!\\b(x|y)\\b) - negative lookahead to exclude exact matches of x or y
+    // \\w+ - match one or more word characters
+    const pattern = new RegExp(`\\b(?!(${x}|${y})\\b)\\w+\\b`, 'gi');
 
-    // Test function
-    return function(testString) {
-        return testString.match(pattern) || [];
-    };
+    // Find all matches and return as array
+    return check.match(pattern) || [];
 }
 
-// Example usage:
-const matcher = foo('cat', 'dog');
-
 // Test cases
-const testCases = [
-    'cat',           // Should not match
-    'dog',           // Should not match
-    'catdog',        // Should match
-    'dogcat',        // Should match
-    'cats',          // Should match
-    'CAT',           // Should not match (case insensitive)
-    'DOG',           // Should not match (case insensitive)
-    'catalog',       // Should match
-    'dogmatic',      // Should match
-    'CATDOG',        // Should match
-    'cat_dog',       // Should match
-    'catcat',        // Should match
-    'dogdog'         // Should match
-];
+function runTests() {
+    const testCases = [
+        {
+            check: "hello x world xy xx y yy",
+            x: "x",
+            y: "y",
+            expected: ["hello", "xy", "xx", "yy"],
+            description: "Basic test with x and y"
+        },
+        {
+            check: "abc X Y xY Xy xYz",
+            x: "x",
+            y: "y",
+            expected: ["abc", "xy", "xyz"],
+            description: "Case insensitive test"
+        },
+        {
+            check: "test_1 x_y x",
+            x: "x",
+            y: "y",
+            expected: ["test_1", "x_y"],
+            description: "Test with underscores"
+        },
+        {
+            check: "",
+            x: "x",
+            y: "y",
+            expected: [],
+            description: "Empty string test"
+        }
+    ];
 
-testCases.forEach(test => {
-    console.log(`"${test}": ${matcher(test).join(', ') || 'no match'}`);
-});
+    testCases.forEach((testCase, index) => {
+        const result = foo(testCase.check, testCase.x, testCase.y);
+        const passed = JSON.stringify(result.sort()) === JSON.stringify(testCase.expected.sort());
+        console.log(`Test ${index + 1} (${testCase.description}): ${passed ? 'PASSED' : 'FAILED'}`);
+        console.log(`  Input: "${testCase.check}"`);
+        console.log(`  X: "${testCase.x}", Y: "${testCase.y}"`);
+        console.log(`  Expected: ${JSON.stringify(testCase.expected)}`);
+        console.log(`  Got: ${JSON.stringify(result)}`);
+        console.log();
+    });
+}
+
+// Run tests
+runTests();
 
 module.exports = { foo };
