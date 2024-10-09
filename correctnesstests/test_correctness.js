@@ -1,7 +1,7 @@
 const { readFile, writeFile } = require('fs/promises');
 
 writeFile("./results.csv", "", {flag: "w+"});
-["E-MX", "E-TT", "M-LN", "M-WJ"].forEach(problem => {
+["E-SC", "E-MX", "E-TT", "M-LN", "M-WJ"].forEach(problem => {
     let inOutFile = "./inputs-outputs/" + problem + ".json";
     readFile(inOutFile, "utf-8").then((data) => {
         const inOut = JSON.parse(data);
