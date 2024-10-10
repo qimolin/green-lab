@@ -21,4 +21,4 @@ const wordY = 'test';
 console.log(foo(input, wordX, wordY));
 // Output: [ 'xy', 'xx', 'y', 'example' ]
 
-export default { foo };
+module.exports = { foo };

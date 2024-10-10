@@ -21,4 +21,4 @@ function foo(x, y) {
   return 0;
 }
 
-export default { foo };
+module.exports = { foo };

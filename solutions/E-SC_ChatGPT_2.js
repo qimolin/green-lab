@@ -22,5 +22,3 @@ console.log(foo('a', 'b')); // 1 (both lowercase)
 console.log(foo('A', 'B')); // 1 (both uppercase)
 console.log(foo('a', 'B')); // 0 (different cases)
 console.log(foo('a', '1')); // -1 (non-letter)
-
-export default { foo };
