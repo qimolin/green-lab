@@ -3,8 +3,8 @@ import path from 'path';
 
 await writeFile('./results.csv', '', { flag: 'w+' });
 
-const problems = ['H-MN', 'H-MS']
-const llms = ['ChatGPT', 'Claude', 'Gemini']
+const problems = ['H-MN', 'H-MS'];
+const llms = ['ChatGPT', 'Claude', 'Gemini'];
 
 for (const problem of problems) {
   const inOutFile = './inputs-outputs/' + problem + '.json';

@@ -1,38 +1,18 @@
-E-SC,ChatGPT,0,true
-E-SC,ChatGPT,1,true
-E-SC,Claude,0,true
-E-SC,Claude,1,true
-E-SC,Claude,2,true
-E-MX,ChatGPT,0,true
-E-MX,ChatGPT,1,true
-E-MX,ChatGPT,2,true
-E-MX,Claude,0,true
-E-MX,Claude,1,true
-E-MX,Claude,2,true
-E-TT,ChatGPT,0,false
-E-TT,ChatGPT,1,false
-E-TT,ChatGPT,2,false
-E-TT,Claude,0,false,SyntaxError: Invalid regular expression: missing /
-E-TT,Claude,1,false,SyntaxError: Invalid regular expression: missing /
-E-TT,Claude,2,false
-E-TT,Gemini,0,false
-E-TT,Gemini,1,false
-E-TT,Gemini,2,false
-M-LN,ChatGPT,0,true
-M-LN,ChatGPT,1,true
-M-LN,ChatGPT,2,true
-M-LN,Claude,0,true
-M-LN,Claude,1,true
-M-LN,Claude,2,true
-M-LN,Gemini,0,true
-M-LN,Gemini,1,true
-M-LN,Gemini,2,true
-M-WJ,ChatGPT,0,true
-M-WJ,ChatGPT,1,true
-M-WJ,ChatGPT,2,true
-M-WJ,Claude,0,true
-M-WJ,Claude,1,true
-M-WJ,Claude,2,true
-M-WJ,Gemini,0,true
-M-WJ,Gemini,1,true
-M-WJ,Gemini,2,true
+H-MN,ChatGPT,0,true
+H-MN,ChatGPT,1,true
+H-MN,ChatGPT,2,true
+H-MN,Claude,0,true
+H-MN,Claude,1,true
+H-MN,Claude,2,true
+H-MN,Gemini,0,false,Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/home/qimo/green-lab/solutions/H-MN_Gemini_0.js' imported from /home/qimo/green-lab/tests/correctness/test_correctness.js
+H-MN,Gemini,1,false,Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/home/qimo/green-lab/solutions/H-MN_Gemini_1.js' imported from /home/qimo/green-lab/tests/correctness/test_correctness.js
+H-MN,Gemini,2,false,Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/home/qimo/green-lab/solutions/H-MN_Gemini_2.js' imported from /home/qimo/green-lab/tests/correctness/test_correctness.js
+H-MS,ChatGPT,0,true
+H-MS,ChatGPT,1,true
+H-MS,ChatGPT,2,true
+H-MS,Claude,0,true
+H-MS,Claude,1,true
+H-MS,Claude,2,true
+H-MS,Gemini,0,false,Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/home/qimo/green-lab/solutions/H-MS_Gemini_0.js' imported from /home/qimo/green-lab/tests/correctness/test_correctness.js
+H-MS,Gemini,1,false,Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/home/qimo/green-lab/solutions/H-MS_Gemini_1.js' imported from /home/qimo/green-lab/tests/correctness/test_correctness.js
+H-MS,Gemini,2,false,Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/home/qimo/green-lab/solutions/H-MS_Gemini_2.js' imported from /home/qimo/green-lab/tests/correctness/test_correctness.js
