@@ -19,4 +19,4 @@ function foo(x, y, target) {
   return target % gcd(x, y) === 0;
 }
 
-module.exports = { foo };
+export default foo;

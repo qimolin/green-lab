@@ -39,4 +39,4 @@ function foo(x, y, target) {
   return false;
 }
 
-module.exports = { foo };
+export default foo;

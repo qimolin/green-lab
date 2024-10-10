@@ -41,8 +41,8 @@ function foo(r, c, S) {
       // Explore adjacent cells
       const directions = [
         [-1, 0], // North
-        [0, 1],  // East
-        [1, 0],  // South
+        [0, 1], // East
+        [1, 0], // South
         [0, -1], // West
       ];
 
@@ -69,7 +69,7 @@ function foo(r, c, S) {
     let path = [];
     let current = `${r - 1},${c - 1}`;
     while (current) {
-      path.unshift(current.split(",").map(Number));
+      path.unshift(current.split(',').map(Number));
       current = parent.get(current);
     }
 
@@ -94,4 +94,4 @@ function foo(r, c, S) {
 
   return maze;
 }
-module.exports = { foo };
+export default foo;

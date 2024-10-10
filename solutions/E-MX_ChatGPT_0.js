@@ -19,4 +19,4 @@ function foo(check, x, y) {
 const result = foo('foo xy x y fooX fooY xx', 'x', 'y');
 console.log(result); // Output: ['foo', 'xy', 'fooX', 'fooY', 'xx']
 
-module.exports = { foo };
+export default foo;

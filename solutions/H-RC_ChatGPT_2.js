@@ -72,4 +72,4 @@ function foo(H, W, S) {
   return markPath(shortestPath);
 }
 
-module.exports = { foo };
+export default foo;

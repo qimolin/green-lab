@@ -24,4 +24,4 @@ console.log(
   )
 );
 
-module.exports = { foo };
+export default foo;
