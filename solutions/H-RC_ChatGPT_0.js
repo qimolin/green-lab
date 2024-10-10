@@ -72,4 +72,4 @@ const W = 4;
 
 console.log(foo(H, W, maze));
 
-export default { foo };
+export default foo;

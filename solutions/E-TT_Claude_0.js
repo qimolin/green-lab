@@ -30,4 +30,4 @@ console.log(foo("O--XO-XXO")); // false
 console.log(foo("X--O-OX--")); // false
 console.log(foo("XOXXOO---")); // false
 
-export default { foo };
+export default foo;

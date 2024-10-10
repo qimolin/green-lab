@@ -9,4 +9,4 @@ function foo(board) {
   return regex.test(board);
 }
 
-export default { foo };
+export default foo;

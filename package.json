@@ -1,0 +1,20 @@
+{
+  "name": "green-lab",
+  "version": "0.0.1",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "cd tests/correctness && node test_correctness.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qimolin/green-lab.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/qimolin/green-lab/issues"
+  },
+  "homepage": "https://github.com/qimolin/green-lab#readme",
+  "description": ""
+}

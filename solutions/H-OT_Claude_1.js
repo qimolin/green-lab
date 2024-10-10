@@ -52,4 +52,4 @@ function foo(L, N, T, W, X, M, S, Y) {
 //
 // console.log(foo(L, N, T, W, X, M, S, Y));
 
-export default { foo };
+export default foo;

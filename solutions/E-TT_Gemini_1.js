@@ -28,4 +28,4 @@ function foo(board) {
   // No winner
   return false;
 }
-export default { foo };
+export default foo;

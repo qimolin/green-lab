@@ -15,4 +15,4 @@ function foo(board) {
     const winningPattern = /(?:XXX|OOO)/.test(formattedBoard) ||  // Horizontal
         /(?:(...)*(.))(?:\2(...)*\2){
 
-export default { foo };
+export default foo;

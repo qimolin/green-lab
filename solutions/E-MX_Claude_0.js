@@ -66,4 +66,4 @@ function runTests() {
 // Run tests
 runTests();
 
-export default { foo };
+export default foo;

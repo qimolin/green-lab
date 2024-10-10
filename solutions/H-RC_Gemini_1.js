@@ -98,4 +98,4 @@ function foo(r, c, S) {
 
   return maze;
 }
-export default { foo };
+export default foo;

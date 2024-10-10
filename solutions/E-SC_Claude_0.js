@@ -15,4 +15,4 @@ function foo(x, y) {
   }
 }
 
-export default { foo };
+export default foo;

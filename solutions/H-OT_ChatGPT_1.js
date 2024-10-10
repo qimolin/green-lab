@@ -33,4 +33,4 @@ function foo(L, N, T, W, X, M, S, Y) {
   return arrivalTimes[N][M - 1];
 }
 
-export default { foo };
+export default foo;

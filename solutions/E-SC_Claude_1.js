@@ -12,4 +12,4 @@ function foo(x, y) {
   return xIsUpper === yIsUpper ? 1 : 0;
 }
 
-export default { foo };
+export default foo;

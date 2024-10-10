@@ -20,4 +20,4 @@ console.log(foo(15));
 console.log(foo(5));
 // Output: [1, 2, 3, 4, 5]
 
-export default { foo };
+export default foo;

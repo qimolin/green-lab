@@ -23,4 +23,4 @@ function runTests() {
 
 runTests();
 
-export default { foo };
+export default foo;

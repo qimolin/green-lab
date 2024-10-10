@@ -51,4 +51,4 @@ function foo(x, y, target) {
   return false;
 }
 
-export default { foo };
+export default foo;

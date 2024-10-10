@@ -26,4 +26,4 @@ function foo(board) {
   return false; // Return false if no pattern matches
 }
 
-export default { foo };
+export default foo;

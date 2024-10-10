@@ -33,4 +33,4 @@ function foo(L, N, T, W, X, M, S, Y) {
   // Return the arrival time of the reserve bus at the hotel (the last sorting station).
   return t[N][M - 1];
 }
-export default { foo };
+export default foo;

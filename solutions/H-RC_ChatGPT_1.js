@@ -55,4 +55,4 @@ function foo(H, W, S) {
   return result;
 }
 
-export default { foo };
+export default foo;

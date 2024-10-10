@@ -29,4 +29,4 @@ console.log(foo('XO-XO-XO-')); // true (X wins diagonally)
 console.log(foo('O-OXXOX-O')); // true (O wins vertically)
 console.log(foo('XO-X-OX-O')); // false (no winner)
 
-export default { foo };
+export default foo;

@@ -73,4 +73,4 @@ function foo(r, c, S) {
   return result;
 }
 
-export default { foo };
+export default foo;

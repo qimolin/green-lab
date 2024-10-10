@@ -33,4 +33,4 @@ console.log(foo('XOXOXOXOX')); // false (no winner)
 console.log(foo('OXOXOXOXO')); // false (no winner)
 console.log(foo('XOX-XO-XO')); // true (O wins)
 
-export default { foo };
+export default foo;

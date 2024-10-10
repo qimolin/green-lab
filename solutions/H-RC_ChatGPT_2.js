@@ -72,4 +72,4 @@ function foo(H, W, S) {
   return markPath(shortestPath);
 }
 
-export default { foo };
+export default foo;

@@ -26,4 +26,4 @@ console.log(foo('apple banana x y grape', 'x', 'y'));
 console.log(foo('xyz abc x_y x', 'x', 'y'));
 // Expected output: ["xyz", "abc", "x_y"]
 
-export default { foo };
+export default foo;

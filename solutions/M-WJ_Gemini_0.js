@@ -15,4 +15,4 @@ function foo(x, y, target) {
   // Otherwise, it's possible to reach the target.
   return true;
 }
-export default { foo };
+export default foo;

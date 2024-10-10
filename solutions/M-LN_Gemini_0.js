@@ -12,4 +12,4 @@ function foo(n) {
 
   return result.map(Number);
 }
-export default { foo };
+export default foo;
