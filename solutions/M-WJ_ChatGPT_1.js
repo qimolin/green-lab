@@ -16,4 +16,4 @@ function foo(x, y, target) {
   return target % g === 0;
 }
 
-module.exports = { foo };
+export default { foo };

@@ -1,6 +1,8 @@
 function foo(L, N, T, W, X, M, S, Y) {
   // Initialize an array to store the arrival times of each bus at each sorting station.
-  let t = Array(N + 1).fill(0).map(() => Array(M).fill(0));
+  let t = Array(N + 1)
+    .fill(0)
+    .map(() => Array(M).fill(0));
 
   // Initialize the arrival times of the non-reserve buses at the airport (sorting station 0).
   for (let i = 0; i < N; i++) {
@@ -35,4 +37,4 @@ function foo(L, N, T, W, X, M, S, Y) {
   // Return the arrival time of the reserve bus at the hotel (the last sorting station).
   return t[N][M - 1];
 }
-module.exports = { foo };
+export default { foo };

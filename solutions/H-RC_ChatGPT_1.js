@@ -55,4 +55,4 @@ function foo(H, W, S) {
   return result;
 }
 
-module.exports = { foo };
+export default { foo };

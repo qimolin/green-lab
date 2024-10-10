@@ -11,4 +11,4 @@ function foo(n) {
 
   return numbers;
 }
-module.exports = { foo };
+export default { foo };
