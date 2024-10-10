@@ -3,7 +3,7 @@ import path from 'path';
 
 await writeFile('./results.csv', '', { flag: 'w+' });
 
-const problems = ['H-MN', 'H-MS'];
+const problems = ['M-GS', 'H-MN', 'H-MS'];
 const llms = ['ChatGPT', 'Claude', 'Gemini'];
 
 for (const problem of problems) {
@@ -19,7 +19,6 @@ for (const problem of problems) {
         );
         try {
           const foo = await import(fooPath);
-          if (!foo.default) break;
           let passed = true;
           for (let i = 0; i < 50; i++) {
             if (inOut.length - 1 < i) {
