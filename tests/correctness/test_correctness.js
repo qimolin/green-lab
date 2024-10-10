@@ -3,7 +3,8 @@ import path from 'path';
 
 await writeFile('./results.csv', '', { flag: 'w+' });
 
-const problems = ['E-SC', 'E-MX', 'E-TT', 'M-LN', 'M-WJ'];
+const problems = ['H-MN', 'H-MS']
+const llms = ['ChatGPT', 'Claude', 'Gemini']
 
 for (const problem of problems) {
   const inOutFile = './inputs-outputs/' + problem + '.json';
@@ -11,7 +12,7 @@ for (const problem of problems) {
     const data = await readFile(inOutFile, 'utf-8');
     const inOut = JSON.parse(data);
 
-    for (const llm of ['ChatGPT', 'Claude', 'Gemini']) {
+    for (const llm of llms) {
       for (let r = 0; r < 3; r++) {
         const fooPath = path.resolve(
           '../../solutions/' + problem + '_' + llm + '_' + r.toString() + '.js'
@@ -21,7 +22,7 @@ for (const problem of problems) {
           if (!foo.default) break;
           let passed = true;
           for (let i = 0; i < 50; i++) {
-            if (problem.startsWith('E') && i > 14) {
+            if (inOut.length - 1 < i) {
               break;
             }
             const input = inOut[i][0];
