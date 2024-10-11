@@ -4,24 +4,33 @@ M-GS,ChatGPT,2,true
 M-GS,Claude,0,false,Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/home/qimo/green-lab/solutions/M-GS_Claude_0.js' imported from /home/qimo/green-lab/tests/correctness/test_correctness.js
 M-GS,Claude,1,false,Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/home/qimo/green-lab/solutions/M-GS_Claude_1.js' imported from /home/qimo/green-lab/tests/correctness/test_correctness.js
 M-GS,Claude,2,false,Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/home/qimo/green-lab/solutions/M-GS_Claude_2.js' imported from /home/qimo/green-lab/tests/correctness/test_correctness.js
-M-GS,Gemini,0,false,Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/home/qimo/green-lab/solutions/M-GS_Gemini_0.js' imported from /home/qimo/green-lab/tests/correctness/test_correctness.js
-M-GS,Gemini,1,false,Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/home/qimo/green-lab/solutions/M-GS_Gemini_1.js' imported from /home/qimo/green-lab/tests/correctness/test_correctness.js
-M-GS,Gemini,2,false,Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/home/qimo/green-lab/solutions/M-GS_Gemini_2.js' imported from /home/qimo/green-lab/tests/correctness/test_correctness.js
+M-GS,Gemini,0,true
+M-GS,Gemini,1,true
+M-GS,Gemini,2,true
+M-CS,ChatGPT,0,true
+M-CS,ChatGPT,1,true
+M-CS,ChatGPT,2,true
+M-CS,Claude,0,false,Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/home/qimo/green-lab/solutions/M-CS_Claude_0.js' imported from /home/qimo/green-lab/tests/correctness/test_correctness.js
+M-CS,Claude,1,false,Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/home/qimo/green-lab/solutions/M-CS_Claude_1.js' imported from /home/qimo/green-lab/tests/correctness/test_correctness.js
+M-CS,Claude,2,false,Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/home/qimo/green-lab/solutions/M-CS_Claude_2.js' imported from /home/qimo/green-lab/tests/correctness/test_correctness.js
+M-CS,Gemini,0,false,Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/home/qimo/green-lab/solutions/M-CS_Gemini_0.js' imported from /home/qimo/green-lab/tests/correctness/test_correctness.js
+M-CS,Gemini,1,false,Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/home/qimo/green-lab/solutions/M-CS_Gemini_1.js' imported from /home/qimo/green-lab/tests/correctness/test_correctness.js
+M-CS,Gemini,2,false,Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/home/qimo/green-lab/solutions/M-CS_Gemini_2.js' imported from /home/qimo/green-lab/tests/correctness/test_correctness.js
 H-MN,ChatGPT,0,true
 H-MN,ChatGPT,1,true
 H-MN,ChatGPT,2,true
 H-MN,Claude,0,true
 H-MN,Claude,1,true
 H-MN,Claude,2,true
-H-MN,Gemini,0,false,Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/home/qimo/green-lab/solutions/H-MN_Gemini_0.js' imported from /home/qimo/green-lab/tests/correctness/test_correctness.js
-H-MN,Gemini,1,false,Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/home/qimo/green-lab/solutions/H-MN_Gemini_1.js' imported from /home/qimo/green-lab/tests/correctness/test_correctness.js
-H-MN,Gemini,2,false,Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/home/qimo/green-lab/solutions/H-MN_Gemini_2.js' imported from /home/qimo/green-lab/tests/correctness/test_correctness.js
+H-MN,Gemini,0,true
+H-MN,Gemini,1,true
+H-MN,Gemini,2,true
 H-MS,ChatGPT,0,true
 H-MS,ChatGPT,1,true
 H-MS,ChatGPT,2,true
 H-MS,Claude,0,true
 H-MS,Claude,1,true
 H-MS,Claude,2,true
-H-MS,Gemini,0,false,Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/home/qimo/green-lab/solutions/H-MS_Gemini_0.js' imported from /home/qimo/green-lab/tests/correctness/test_correctness.js
-H-MS,Gemini,1,false,Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/home/qimo/green-lab/solutions/H-MS_Gemini_1.js' imported from /home/qimo/green-lab/tests/correctness/test_correctness.js
-H-MS,Gemini,2,false,Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/home/qimo/green-lab/solutions/H-MS_Gemini_2.js' imported from /home/qimo/green-lab/tests/correctness/test_correctness.js
+H-MS,Gemini,0,false
+H-MS,Gemini,1,false,RangeError: Maximum call stack size exceeded
+H-MS,Gemini,2,false,Error: got 0 params instead of 1
