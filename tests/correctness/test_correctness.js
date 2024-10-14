@@ -1,5 +1,6 @@
 import { readFile, writeFile } from 'fs/promises';
 import path from 'path';
+import { pathToFileURL } from 'url';
 
 await writeFile('./results.csv', '', { flag: 'w+' });
 
@@ -17,8 +18,12 @@ for (const problem of problems) {
         const fooPath = path.resolve(
           '../../solutions/' + problem + '_' + llm + '_' + r.toString() + '.js'
         );
+
         try {
-          const foo = await import(fooPath);
+          // Convert the path to a valid file:// URL for Windows
+          const fooUrl = pathToFileURL(fooPath);
+          const foo = await import(fooUrl.href);
+
           let passed = true;
           for (let i = 0; i < 50; i++) {
             if (inOut.length - 1 < i) {
