@@ -1,6 +1,6 @@
-E-UE,ChatGPT,0,false,Error: got 4 params instead of 1
-E-UE,ChatGPT,1,false,Error: got 4 params instead of 1
-E-UE,ChatGPT,2,false,Error: got 4 params instead of 1
+E-UE,ChatGPT,0,true
+E-UE,ChatGPT,1,true
+E-UE,ChatGPT,2,true
 E-UE,Claude,0,false,Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/home/qimo/green-lab/solutions/E-UE_Claude_0.js' imported from /home/qimo/green-lab/tests/correctness/test_correctness.js
 E-UE,Claude,1,false,Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/home/qimo/green-lab/solutions/E-UE_Claude_1.js' imported from /home/qimo/green-lab/tests/correctness/test_correctness.js
 E-UE,Claude,2,false,Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/home/qimo/green-lab/solutions/E-UE_Claude_2.js' imported from /home/qimo/green-lab/tests/correctness/test_correctness.js
@@ -43,9 +43,9 @@ H-MN,Claude,2,true
 H-MN,Gemini,0,true
 H-MN,Gemini,1,true
 H-MN,Gemini,2,true
-H-SF,ChatGPT,0,false,Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/home/qimo/green-lab/solutions/H-SF_ChatGPT_0.js' imported from /home/qimo/green-lab/tests/correctness/test_correctness.js
-H-SF,ChatGPT,1,false,Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/home/qimo/green-lab/solutions/H-SF_ChatGPT_1.js' imported from /home/qimo/green-lab/tests/correctness/test_correctness.js
-H-SF,ChatGPT,2,false,Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/home/qimo/green-lab/solutions/H-SF_ChatGPT_2.js' imported from /home/qimo/green-lab/tests/correctness/test_correctness.js
+H-SF,ChatGPT,0,true
+H-SF,ChatGPT,1,true
+H-SF,ChatGPT,2,true
 H-SF,Claude,0,true
 H-SF,Claude,1,true
 H-SF,Claude,2,true
