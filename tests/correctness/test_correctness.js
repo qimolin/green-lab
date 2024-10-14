@@ -3,7 +3,7 @@ import path from 'path';
 
 await writeFile('./results.csv', '', { flag: 'w+' });
 
-const problems = ['M-GS', 'M-CS', 'H-MN', 'H-SF'];
+const problems = ['E-UE', 'E-PN', 'M-GS', 'M-CS', 'H-MN', 'H-SF'];
 const llms = ['ChatGPT', 'Claude', 'Gemini'];
 
 for (const problem of problems) {
