@@ -30,6 +30,7 @@ try {
     const foo = await import(fooUrl.href);
 
     let passed = true;
+    let count = 0;
     while(1){
       for (let i = 0; i < 50; i++) {
         if (inOut.length - 1 < i) {
@@ -58,6 +59,16 @@ try {
           // console.log(output)
         }
 
+      }
+      count++
+      if (problem[0] == "E" && count%10000 == 0){
+        console.log(" Execution: ",count, " ")
+      }
+      else if (problem[0] == "M" && count%1000 == 0){
+        console.log(" Execution: ",count, " ")
+      }
+      else if (problem[0] == "H" && count%100 == 0){
+        console.log(" Execution: ",count, " ")
       }
   }
   
