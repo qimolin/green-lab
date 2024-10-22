@@ -64,10 +64,13 @@ try {
       if (problem[0] == "E" && count%10000 == 0){
         console.log(" Execution: ",count, " ")
       }
-      else if (problem[0] == "M" && count%1000 == 0){
+      else if (problem[0] == "M" && count%10000 == 0){
         console.log(" Execution: ",count, " ")
       }
-      else if (problem[0] == "H" && count%100 == 0){
+      else if (problem == "H-MN" && count%1000 == 0){
+        console.log(" Execution: ",count, " ")
+      }
+      else if (problem == "H-SF" && count%100 == 0){
         console.log(" Execution: ",count, " ")
       }
   }
