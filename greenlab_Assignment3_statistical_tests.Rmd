@@ -1,0 +1,373 @@
+---
+title: "GreenLabAssignment3"
+output:
+  pdf_document: default
+  html_document: default
+date: "2024-10-25"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(dplyr)
+library(dunn.test)
+library(ggplot2)
+library(car)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, results = 'hide')
+```
+
+```{r}
+data <- read.csv("data/run_table.csv")
+```
+
+# Data exploration for RQ1.1
+```{r}
+# Add a new column that represents just the difficulty level which is the first letter of 'problem' category
+data <- data %>%
+  mutate(difficulty = substr(problem, 1, 1))
+
+# Remove large outlier (both log_energy and cpu_usage)
+data <- data %>%
+  filter(X__run_id != "run_24_repetition_2")
+
+# Create a new column called 'energy_per_execution'
+data <- data %>%
+  mutate(energy_per_execution = log_energy / log_exec)
+```
+
+```{r}
+# Group by 'difficulty' column
+summary_data <- data %>%
+  group_by(difficulty) %>%
+  summarise(
+    mean_log_energy = mean(energy_per_execution),
+    median_log_energy = median(energy_per_execution),
+    mean_cpu_usage = mean(avg_cpu_usage),
+    median_cpu_usage = median(avg_cpu_usage)
+  )
+print(summary_data)
+```
+
+```{r}
+# Standard deviation for log_energy and avg_cpu_usage
+std_dev_data <- data %>%
+  group_by(difficulty) %>%
+  summarise(
+    std_dev_log_energy = sd(energy_per_execution),
+    std_dev_cpu_usage = sd(avg_cpu_usage)
+  )
+print(std_dev_data)
+```
+
+Based on the mean and median results for log energy, it would seem that hard problems use more resources than both easy and medium, and medium uses more than easy. The standard deviation for hard problems is much higher than for easy and medium problems, which shows that LLMs might be solving these in a less predictable way. As for CPU usage, easy, medium, and hard problems do not seem to deviate much and are relatively stable.
+
+# Data exploration for RQ1.2
+```{r}
+# Group by 'LLM'
+summary_data_llm <- data %>%
+  group_by(llm) %>%
+  summarise(
+    mean_log_energy = mean(energy_per_execution),
+    median_log_energy = median(energy_per_execution),
+    mean_cpu_usage = mean(avg_cpu_usage),
+    median_cpu_usage = median(avg_cpu_usage)
+  )
+print(summary_data_llm)
+```
+
+```{r}
+# Standard deviation for log_energy and avg_cpu_usage
+std_dev_data_llm <- data %>%
+  group_by(llm) %>%
+  summarise(
+    std_dev_log_energy = sd(energy_per_execution),
+    std_dev_cpu_usage = sd(avg_cpu_usage)
+  )
+print(std_dev_data_llm)
+```
+
+The mean and median values are quite close to each other and do not vary by much for both log_energy and cpu_usage. Claude has the highest standard deviation for log_energy, followed by Gemini and lastly ChatGPT. Claude seems to have a slight edge when looking at the mean and median, but may be less predictable in terms of energy efficiency.
+
+# Data exploration for RQ1.3
+```{r}
+# Group by problem, llm, and iteration to get mean and std dev across 20 repetitions for each solution
+summary_data_iterations <- data %>%
+  group_by(problem, llm, iteration) %>%
+  summarise(
+    mean_log_energy = mean(energy_per_execution),
+    std_dev_log_energy = sd(energy_per_execution),  
+    mean_cpu_usage = mean(avg_cpu_usage),
+    std_dev_cpu_usage = sd(avg_cpu_usage)
+  )
+print(summary_data_iterations)
+
+# Plot standard deviation of log_energy across iterations
+ggplot(summary_data_iterations, aes(x = iteration, y = std_dev_log_energy, color = llm, group = llm)) +
+  geom_line() +
+  facet_wrap(~ problem) +
+  labs(title = "Standard Deviation of Log Energy Across Iterations", x = "Iteration", y = "Standard Deviation (Joules)") +
+  theme_minimal()
+
+```
+For most of the problems, it seems that the solutions are pretty stable across iterations except for H-SF which seems to display a much greater amount of variability across all 3 LLMs. This could indicate the inconsistency of energy efficiency when solving hard problems. Its possible each problem varied significantly in terms of complexity for every iteration for this scenario.
+
+# Data exploration: correlation between log_energy and cpu_usage
+
+```{r}
+qqnorm(data$energy_per_execution, main = "Q-Q Plot for Power Consumption")
+qqline(data$energy_per_execution, col = "blue")
+
+qqnorm(data$avg_cpu_usage, main = "Q-Q Plot for Avg. CPU Usage")
+qqline(data$avg_cpu_usage, col = "blue")
+```
+```{r}
+shapiro.test(data$energy_per_execution)
+shapiro.test(data$avg_cpu_usage)
+```
+Looking at the plots for energy_per_execution and avg_cpu_usage, it becomes evident from the graph alone that the data does not follow a normal distribution. The tail-ends for CPU usage are significantly skewed, and the energy_per_execution has significant skewness. Along with the Shapiro-Wilk test, we can conclude that they do not follow a normal distribution.
+
+```{r}
+spearman_correlation <- cor.test(data$energy_per_execution, data$avg_cpu_usage, method = "spearman")
+print(spearman_correlation)
+```
+The rho being close to 0, as well as a p-value that is greater than 0.05, there does not seem to be a strong correlation between energy_per_execution and avg_cpu_usage.
+
+
+# RQ1.1 problem difficuly
+## Test for normality for energy consumption (energy_per_execution)
+
+```{r}
+# Stratify by easy, medium, hard
+easy_log_energy <- filter(data, grepl("^E", problem))$energy_per_execution
+medium_log_energy <- filter(data, grepl("^M", problem))$energy_per_execution
+hard_log_energy <- filter(data, grepl("^H", problem))$energy_per_execution
+
+# Shapiro-Wilk test for each difficulty level
+shapiro.test(easy_log_energy)   
+shapiro.test(medium_log_energy)
+shapiro.test(hard_log_energy)
+```
+
+Looking at the p-values, for easy, medium, and hard, they are less than 0.05 by a wide margin. The test is telling us that log_energy is not a normal distribution.
+
+```{r}
+par(mfrow = c(1, 3))
+
+# Q-Q Plot for energy consumption (easy problems)
+qqnorm(easy_log_energy, main = "Q-Q Plot for Easy Problems")
+qqline(easy_log_energy, col = "blue")
+
+# Q-Q Plot for energy consumption (medium problems)
+qqnorm(medium_log_energy, main = "Q-Q Plot for Medium Problems")
+qqline(medium_log_energy, col = "blue")
+
+# Q-Q Plot for energy consumption (hard problems)
+qqnorm(hard_log_energy, main = "Q-Q Plot for Hard Problems")
+qqline(hard_log_energy, col = "blue")
+
+par(mfrow = c(1, 1))
+
+```
+Easy, medium, and hard problems all display evidence of the data not following a normal distribution. They appear extremely skewed in the plots, and along with the Shapiro-Wilk test, we can conclude that they do not follow a normal distribution.
+
+### Hypothesis testing (log_energy)
+Since we have confirmed that the data does not follow a normal distribution, we will have to use a non-parametric test as ANOVA test would not apply. We will use the Kruskal-Wallis to see if there are large differences between the medians across difficulty levels.
+
+```{r}
+# Kruskal-Wallis test for log_energy across the difficulties
+kruskal_log_energy_difficulty <- kruskal.test(energy_per_execution ~ difficulty, data = data)
+print(kruskal_log_energy_difficulty)
+```
+The p-value being significantly less than 0.05 means that there must be a large difference between levels.
+
+```{r}
+# Mean energy consumption by difficulty level (bar plot)
+ggplot(summary_data, aes(x = difficulty, y = mean_log_energy, fill = difficulty)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Mean Energy Consumption (log_energy) by Difficulty",
+       x = "Difficulty",
+       y = "Mean Log Energy (Joules)") +
+  theme_minimal()
+```
+
+Visualizing the mean log_energy across levels shows there is a very large difference, where hard problems consume more than medium, and medium more than easy. Hard consumes significantly more than the rest, which might correlate with the large deviations we saw for H-SF. Along with the Kruskal-Wallis test, this difference is enough to to have an impact statistically speaking.
+
+Given this, we can reject the null hypothesis.
+
+## Test for normality for energy consumption (avg_cpu_usage)
+```{r}
+# Stratify by easy, medium, hard
+easy_cpu <- filter(data, difficulty == "E")$avg_cpu_usage
+medium_cpu <- filter(data, difficulty == "M")$avg_cpu_usage
+hard_cpu <- filter(data, difficulty == "H")$avg_cpu_usage
+
+# Shapiro-Wilk test for each difficulty level
+shapiro.test(easy_cpu)   
+shapiro.test(medium_cpu) 
+shapiro.test(hard_cpu)
+```
+The p-value being significantly less than 0.05 means that there must be a large difference between levels for avg_cpu_usage as well.
+
+```{r}
+par(mfrow = c(1, 3))
+
+# Q-Q Plot for energy consumption (easy problems)
+qqnorm(easy_cpu, main = "Q-Q Plot for Easy Problems")
+qqline(easy_cpu, col = "blue")
+
+# Q-Q Plot for energy consumption (medium problems)
+qqnorm(medium_cpu, main = "Q-Q Plot for Medium Problems")
+qqline(medium_cpu, col = "blue")
+
+# Q-Q Plot for energy consumption (hard problems)
+qqnorm(hard_cpu, main = "Q-Q Plot for Hard Problems")
+qqline(hard_cpu, col = "blue")
+
+par(mfrow = c(1, 1))
+```
+For all difficulties, the Q-Q plots seem to suggest that the data does not follow a normal distribution when observing the tail-ends. This correlates with the results from the Shapiro-Wilk test.
+
+### Hypothesis testing (avg_cpu_usage)
+```{r}
+# Kruskal-Wallis test for avg_cpu_usage across the difficulties
+kruskal_cpu_difficulty <- kruskal.test(avg_cpu_usage ~ difficulty, data = data)
+print(kruskal_cpu_difficulty)
+```
+The Kruskal-Wallis test has a p-value greater than 0.05, this means that the problem difficulty has a small effect if any on the CPU usage.
+
+The null hypothesis is not rejected.
+
+# RQ1.2 LLM
+## Test for normality for energy consumption (log_energy)
+
+```{r}
+gpt_log_energy <- filter(data, llm == "ChatGPT")$energy_per_execution
+claude_log_energy <- filter(data, llm == "Claude")$energy_per_execution
+gemini_log_energy <- filter(data, llm == "Gemini")$energy_per_execution
+
+# Shapiro-Wilk test for each LLM type
+shapiro.test(gpt_log_energy)
+shapiro.test(claude_log_energy)
+shapiro.test(gemini_log_energy)
+```
+Looking at the p-values, for ChatGPT, Claude, and Gemini, they are less than 0.05 by a wide margin. The test is telling us that log_energy is not a normal distribution.
+
+```{r}
+par(mfrow = c(1, 3))
+# Q-Q Plot for energy consumption (easy problems)
+qqnorm(gpt_log_energy, main = "Q-Q Plot for ChatGPT")
+qqline(gpt_log_energy, col = "blue")
+
+# Q-Q Plot for energy consumption (medium problems)
+qqnorm(claude_log_energy, main = "Q-Q Plot for Claude")
+qqline(claude_log_energy, col = "blue")
+
+# Q-Q Plot for energy consumption (hard problems)
+qqnorm(gemini_log_energy, main = "Q-Q Plot for Gemini")
+qqline(gemini_log_energy, col = "blue")
+```
+Moreover, the plots for ChatGPT, Claude, and Gemini are all skewed, indicating that they are not normally distributed.
+
+
+### Hypothesis testing (log_energy)
+Since we have confirmed that the data does not follow a normal distribution, we will have to use a non-parametric test again, Kruskal-Wallis, to see if there are large differences between the medians across LLM types.
+
+```{r}
+# Kruskal-Wallis test for log_energy across the difficulties
+kruskal_log_energy_llm <- kruskal.test(energy_per_execution ~ llm, data = data)
+print(kruskal_log_energy_llm)
+```
+The Kruskal-Wallis test has a p-value greater than 0.05, this means that the LLM has a small effect if any on the energy_per_execution
+
+The null hypothesis is not rejected.
+
+## Test for normality for energy consumption (avg_cpu_usage)
+
+```{r}
+gpt_cpu <- filter(data, llm == "ChatGPT")$avg_cpu_usage
+claude_cpu <- filter(data, llm == "Claude")$avg_cpu_usage
+gemini_cpu <- filter(data, llm == "Gemini")$avg_cpu_usage
+
+# Shapiro-Wilk test for each LLM type
+shapiro.test(gpt_cpu)
+shapiro.test(claude_cpu)
+shapiro.test(gemini_cpu)
+```
+
+Looking at the p-values, for ChatGPT, Claude, and Gemini, they are less than 0.05 by a wide margin. The test is telling us that CPU usage is not a normal distribution.
+
+```{r}
+# Q-Q Plot for energy consumption (ChatGPT)
+qqnorm(gpt_cpu, main = "Q-Q Plot for ChatGPT")
+qqline(gpt_cpu, col = "blue")
+
+# Q-Q Plot for energy consumption (Claude)
+qqnorm(claude_cpu, main = "Q-Q Plot for Claude")
+qqline(claude_cpu, col = "blue")
+
+# Q-Q Plot for energy consumption (Gemini)
+qqnorm(gemini_cpu, main = "Q-Q Plot for Gemini")
+qqline(gemini_cpu, col = "blue")
+```
+
+Moreover, the plots for ChatGPT, Claude, and Gemini show that the tail-ends are skewed meaning they are likely not a normal distribution.
+
+### Hypothesis testing (avg_cpu_usage)
+```{r}
+# Kruskal-Wallis test for avg_cpu_usage across the LLM types
+kruskal_cpu_llm <- kruskal.test(avg_cpu_usage ~ llm, data = data)
+print(kruskal_cpu_llm)
+```
+The Kruskal-Wallis test has a p-value greater than 0.05, this means that the LLM type has a small effect if any on the CPU usage.
+
+The null hypothesis is not rejected.
+
+# RQ1.3
+## Test for normality for energy consumption (avg_cpu_usage,and energy_per_execution)
+```{r}
+normality_rq1.3 <- data %>%
+  group_by(problem, llm) %>%
+  summarise(
+    shapiro_log_energy = shapiro.test(energy_per_execution)$p.value,
+    shapiro_cpu_usage = shapiro.test(avg_cpu_usage)$p.value
+  )
+print(normality_rq1.3)
+```
+The p-values are all < 0.05, which means that the data is not normally distributed.
+
+### Hypothesis testing (avg_cpu_usage, and energy_per_execution)
+```{r}
+levene_test_per_llm_iteration <- function(data) {
+  results <- data %>%
+    group_by(problem, llm) %>%
+    do({
+      # Compare between iterations
+      levene_log_energy <- leveneTest(energy_per_execution ~ as.factor(iteration), data = .)
+      levene_cpu_usage <- leveneTest(avg_cpu_usage ~ as.factor(iteration), data = .)
+      
+      data.frame(
+        problem = unique(.$problem),
+        llm = unique(.$llm),
+        p_log_energy = levene_log_energy$`Pr(>F)`[1],
+        p_cpu_usage = levene_cpu_usage$`Pr(>F)`[1]
+      )
+    })
+  
+  return(results)
+}
+
+levene_results <- levene_test_per_llm_iteration(data)
+print(levene_results)
+
+```
+All p-values for avg_cpu_usage are greater than 0.05. Moreover, most p-values for energy_per_execution are greater than 0.05 with the exception of:
+
+- E-PN Gemini
+- H-MN Gemini
+
+This means most of the time, the problems were consistent except for these scenarios. It could be that Gemini struggles to produces consistent energy efficient solutions as compared to the other LLMs. Interestingly, H-SF was the problem that seemed to show the most variance, but it did not create a p-value that displays any statistical significance.
+
+We do not reject the null hypothesis since the majority of the results indicate that different iterations for the same LLM and problem are stable.
+
+
+
