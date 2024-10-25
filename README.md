@@ -65,3 +65,6 @@ Steps to add a new test:
 ```bash
 npm run test
 ```
+
+## Statistics
+The R script that was used for the stastical analysis of the results is `greenlab_Assignment3_statistical_tests`
