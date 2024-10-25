@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, results = '
 ```
 
 ```{r}
-data <- read.csv("data/run_table.csv")
+data <- read.csv("data/Group_00ff00_amalgam/run_table_with_avg_usage.csv")
 ```
 
 # Data exploration for RQ1.1
@@ -182,11 +182,16 @@ The p-value being significantly less than 0.05 means that there must be a large 
 
 ```{r}
 # Mean energy consumption by difficulty level (bar plot)
-ggplot(summary_data, aes(x = difficulty, y = mean_log_energy, fill = difficulty)) +
+ggplot(summary_data, aes(x = factor(difficulty, levels = c("E", "M", "H")), 
+                         y = mean_log_energy, fill = difficulty)) +
   geom_bar(stat = "identity") +
-  labs(title = "Mean Energy Consumption (log_energy) by Difficulty",
+  scale_x_discrete(labels = c("E" = "easy", "M" = "medium", "H" = "hard")) +
+  scale_fill_manual(values = c("E" = "red", "M" = "blue", "H" = "green"),
+                    labels = c("E" = "easy", "M" = "medium", "H" = "hard"),
+                    breaks = c("E", "M", "H")) +
+  labs(title = "Mean Energy Consumption by Difficulty",
        x = "Difficulty",
-       y = "Mean Log Energy (Joules)") +
+       y = "Mean Log Energy (Joules) per Solution Execution") +
   theme_minimal()
 ```
 
@@ -369,5 +374,18 @@ This means most of the time, the problems were consistent except for these scena
 
 We do not reject the null hypothesis since the majority of the results indicate that different iterations for the same LLM and problem are stable.
 
+# SCI calculation
 
+```{r}
+# Calculations for SCI
+total_log_exec <- sum(data$log_exec, na.rm = TRUE)
+print(total_log_exec)
+print(total_log_exec / 3600000)
+threeminutes <- mean(data$log_exec, na.rm = TRUE) / mean(mean(data$log_time, na.rm = TRUE)) * 180
+print(threeminutes)
+print(threeminutes / 3600000)
+
+print(total_log_exec / 3600000 + threeminutes / 3600000)
+
+total_time_exec <- sum(data$log_time, na.rm = TRUE)
 
