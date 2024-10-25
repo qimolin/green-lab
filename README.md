@@ -22,6 +22,8 @@ The project tree looks as follows:
 ├── Run_Table_Energy.csv
 ├── package.json
 ├── solutions
+├── data
+├── final
 └── tests
     └── correctness
         ├── inputs-outputs
@@ -61,3 +63,13 @@ Steps to add a new test:
 ```bash
 npm run test
 ```
+
+## Running the Experiment
+
+Clone [experiment runner](https://github.com/S2-group/experiment-runner) and [energibridge](https://github.com/tdurieux/EnergiBridge) from these repos. Then compile energibridge via it's instructions and copy the contents of ```EnergiBridge/target/releses``` to the root directory of experemrnt runner. Then copy [Group_00ff00.py](../experiment-runner/Group_00ff00.py) to experiment runner. You can now run the experement with
+
+```bash
+python experiment-runner/ Group_00ff00.py
+```
+
+The output will need to be post processed
