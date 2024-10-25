@@ -29,6 +29,10 @@ The project tree looks as follows:
         ├── inputs-outputs
         ├── results.csv
         └── test_correctness.js
+    └── energyUse
+        ├── inputs-outputs
+        ├── results.csv
+        └── test_e_use.js
 ```
 
 ## Requirements
@@ -73,3 +77,6 @@ python experiment-runner/ Group_00ff00.py
 ```
 
 The output will need to be post processed
+
+## Statistics
+The R script that was used for the stastical analysis of the results is `greenlab_Assignment3_statistical_tests`
