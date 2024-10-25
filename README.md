@@ -27,6 +27,10 @@ The project tree looks as follows:
         ├── inputs-outputs
         ├── results.csv
         └── test_correctness.js
+    └── energyUse
+        ├── inputs-outputs
+        ├── results.csv
+        └── test_e_use.js
 ```
 
 ## Requirements
